@@ -8,34 +8,29 @@ import UserRoute from './Routes/UserRoute.js';
 import PostRoute from './Routes/PostRoute.js';
 import UploadRoute from './Routes/UploadRoute.js';
 
+dotenv.config();
 
-// Routes
 const app = express();
-
+const PORT = process.env.PORT || 5000;
+const MONGO_DB_URL = process.env.MONGO_DB || 'mongodb://127.0.0.1:27017/socialMedia';
 
 // to serve images for public (public folder)
 app.use(express.static('public'));
 app.use('/images', express.static('public/images'));
-
 
 // MiddleWare
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-dotenv.config();
-
-mongoose.connect
-    (process.env.MONGO_DB
-    ).then(() =>
-        app.listen(process.env.PORT, () => console.log(`listening at ${process.env.PORT}`))
+mongoose.connect(MONGO_DB_URL)
+    .then(() =>
+        app.listen(PORT, () => console.log(`listening at ${PORT}`))
     ).catch((error) =>
         console.log(error)
     )
 
-
 // uses of routes
-
 app.use('/auth', AuthRoute);
 app.use('/user', UserRoute);
 app.use('/post', PostRoute);

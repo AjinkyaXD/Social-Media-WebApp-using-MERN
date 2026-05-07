@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API = axios.create({ baseURL: 'https://social-media-webapp-using-mern.onrender.com/' });
+import API from './index.js';
 
 export const logIn = (formData) => {
   console.log("Login API called");

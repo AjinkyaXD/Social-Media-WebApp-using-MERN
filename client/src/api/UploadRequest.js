@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API = axios.create({ baseURL: 'https://social-media-webapp-using-mern.onrender.com/' });
+import API from './index.js';
 
 export const uploadImage = (data) => API.post('/upload/', data);
 export const uploadPost = (data) => API.post('/post', data);

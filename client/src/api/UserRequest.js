@@ -1,7 +1,4 @@
-import axios from 'axios';
-
-const API = axios.create({ baseURL: 'https://social-media-webapp-using-mern.onrender.com/' });
-
+import API from './index.js';
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -10,7 +7,6 @@ API.interceptors.request.use((req) => {
 
     return req;
 })
-
 
 export const getUser = (userId) => API.get(`/user/${userId}`);
 
